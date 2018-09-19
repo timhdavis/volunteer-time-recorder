@@ -3,7 +3,7 @@ class VolunteersController < ApplicationController
     layout false
 
     def index
-        #
+        @volunteers = Volunteer.all;
     end
 
     def show

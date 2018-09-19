@@ -1,1 +1,5 @@
 <h1>Volunteers Index</h1>
+<% @volunteers.each do |volunteer| %>
+    <h3><%= volunteer.first_name %> <%= volunteer.last_name %></h3>
+    <p> email: <%= volunteer.email_address %> </p>
+<% end %>
