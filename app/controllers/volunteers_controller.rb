@@ -31,6 +31,26 @@ class VolunteersController < ApplicationController
 
     end
 
+    # Called when rendering the Edit Volunteer page:
+    def edit
+        # Get the volunteer object that was selected:
+        @volunteer = Volunteer.find(params[:id]);
+    end
+
+    # Called when the Edit Volunteer form is submitted:
+    def update
+        # Get the volunteer object that was selected:
+        @volunteer = Volunteer.find(params[:id]);
+
+        if(@volunteer.update(volunteer_params))
+            # If saved to DB successfully, go to show page:
+            redirect_to @volunteer;
+        else
+            # If validations prevented save, reload form (with error message):
+            render 'edit';
+        end
+    end
+
 
     private
 
