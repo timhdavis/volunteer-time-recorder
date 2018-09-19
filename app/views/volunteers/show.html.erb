@@ -1,1 +1,15 @@
 <h1>Show Volunteer</h1>
+
+<p>
+    Member Details:
+    <ul>
+        <li>First Name: <%= @volunteer.first_name %></li>
+        <li>Last Name: <%= @volunteer.last_name %></li>
+        <li>Email: <%= @volunteer.email_address %></li>
+    </ul>
+</p>
+
+<p>
+    Notes: <br>
+    <%= @volunteer.notes %>
+</p>
