@@ -1,33 +1,40 @@
 class VolunteersController < ApplicationController
 
-    #layout false
-
     def index
+        # Get all volunteer records from the database to display:
         @volunteers = Volunteer.all;
     end
 
     def show
+        # Get the volunteer object that was selected:
         @volunteer = Volunteer.find(params[:id]);
     end
 
+    # Called when rendering the New Volunteer page:
     def new
-        #
+        # Create a new volunteer instance that will be used in the form:
+        @volunteer = Volunteer.new;
     end
 
+    # Called when the New Volunteer form is submitted:
     def create
-        # for testing: render plain: params[:volunteer].inspect
-
+        # Create a new volunteer instance that will be used in the form:
         @volunteer = Volunteer.new(volunteer_params);
 
-        @volunteer.save;
-
-        redirect_to @volunteer;
+        if(@volunteer.save)
+            # If saved to DB successfully, go to show page:
+            redirect_to @volunteer;
+        else
+            # If validations prevented save, reload form (with error message):
+            render 'new';
+        end
 
     end
 
 
     private
 
+    # Defines the acceptable fields for Volunteer:
     def volunteer_params
         params.require(:volunteer).permit(:first_name, 
             :last_name,:email_address, :notes);
