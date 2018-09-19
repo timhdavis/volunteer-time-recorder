@@ -3,25 +3,25 @@
 <%= form_for :volunteer, url: volunteers_path do |form| %>
     <p>
         <%=form.label :first_name %><br>
-        <%= form.text_field :first_name %>
+        <%= form.text_field(:first_name, {:class => 'form-control'}) %>
     </p>
 
     <p>
         <%=form.label :last_name %><br>
-        <%= form.text_field :last_name %>
+        <%= form.text_field(:last_name, {:class => 'form-control'}) %>
     </p>
 
     <p>
         <%=form.label :email_address %><br>
-        <%= form.text_field :email_address %>
+        <%= form.text_field(:email_address, {:class => 'form-control'}) %>
     </p>
 
     <p>
         <%=form.label :notes %><br>
-        <%= form.text_area :notes %>
+        <%= form.text_area(:notes, {:class => 'form-control'}) %>
     </p>
 
     <p>
-        <%= form.submit %>
+        <%= form.submit({:class => 'btn btn-primary'}) %>
     </p>
 <% end %>
