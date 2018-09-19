@@ -1,6 +1,6 @@
 class VolunteersController < ApplicationController
 
-    layout false
+    #layout false
 
     def index
         @volunteers = Volunteer.all;
