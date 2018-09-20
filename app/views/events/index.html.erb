@@ -1,0 +1,9 @@
+<h1>Events Index</h1>
+<% @events.each do |event| %>
+    <div class="well">
+        <h3><%= event.name %></h3>
+        <p> Year: <%= event.year %> </p>
+        <%= link_to "View Event Details", event_path(event),
+            :class => 'btn btn-default' %>
+    </div>
+<% end %>

@@ -1,0 +1,22 @@
+<h1>Show Event</h1>
+
+<p>
+    Event Details:
+    <ul>
+        <li>Event Name: <%= @event.name %></li>
+        <li>Year: <%= @event.year %></li>
+        <li>Website: <%= @event.website %></li>
+    </ul>
+</p>
+
+<p>
+    Description: <br>
+    <%= @event.description %>
+</p>
+
+<%= link_to "Edit", edit_event_path(@event), :class => 'btn btn-default' %>
+
+<%= link_to("Delete", event_path(@event), 
+        method: :delete,
+        data: {confirm: 'Are you sure you want to permanently delete this event record?'},
+        :class => 'btn btn-danger') %>
