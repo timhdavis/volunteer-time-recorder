@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   # Resources: (maps HTTP verbs to Controller actions)
 
   resources :volunteers do
+    # Make time_records a nested resource (ex: volunteers/1/time_records/1):
+    resources :time_records;
+
     member do
       get :delete # Add delete action; not added by default in Rails.
           # This lets us use "delete_volunteer_path".
@@ -16,6 +19,9 @@ Rails.application.routes.draw do
   end
 
   resources :events do
+    # Make time_records a nested resource (ex: volunteers/1/time_records/1):
+    resources :time_records;
+    
     member do
       get :delete # Add delete action; not added by default in Rails.
           # This lets us use "delete_volunteer_path".
