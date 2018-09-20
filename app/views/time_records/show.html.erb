@@ -1,0 +1,30 @@
+<% if !flash[:notice].blank? %>
+    <div class="alert alert-success">
+        <%= flash[:notice] %>
+    </div>
+<% end %>
+
+<h1>Show Time Record</h1>
+
+<%= link_to "View All Time Records", time_records_path(@time_record), :class => 'btn btn-default' %>
+
+<p>
+    Details:
+    <ul>
+        <li>Name: <%= @time_records.name %></li>
+        <li>Start Time: <%= @time_record.start_time %></li>
+        <li>End Time: <%= @time_record.end_time %></li>
+        <li>Category: <%= @time_record.category %></li>
+        <li>Volunteer: <%= @time_record.volunteer.first_name %> <%= @time_records.volunteer.last_name %></li>
+        <li>Event: <%= @time_record.event.name %></li>
+    </ul>
+</p>
+
+<p>
+    Description: <br>
+    <%= @time_record.notes %>
+</p>
+
+<%= link_to "Edit", edit_time_record_path(@time_record), :class => 'btn btn-default' %>
+
+<%= link_to("Delete", delete_time_record_path(@time_record), :class => 'btn btn-danger') %>
