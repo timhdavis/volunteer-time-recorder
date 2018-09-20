@@ -1,3 +1,9 @@
+<% if !flash[:notice].blank? %>
+    <div class="alert alert-success">
+        <%= flash[:notice] %>
+    </div>
+<% end %>
+
 <h1>Show Event</h1>
 
 <%= link_to "View All Events", events_path(@event), :class => 'btn btn-default' %>

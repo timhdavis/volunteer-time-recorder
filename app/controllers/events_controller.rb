@@ -22,6 +22,9 @@ class EventsController < ApplicationController
         @event = Event.new(event_params);
 
         if(@event.save)
+            # Present a 1-time flash message to the user after redirect:
+            flash[:notice] = "Event created successfully.";
+
             # If saved to DB successfully, go to show page:
             redirect_to @event;
         else
@@ -43,6 +46,9 @@ class EventsController < ApplicationController
         @event = Event.find(params[:id]);
 
         if(@event.update(event_params))
+            # Present a 1-time flash message to the user after redirect:
+            flash[:notice] = "Event updated successfully.";
+
             # If saved to DB successfully, go to show page:
             redirect_to @event;
         else
@@ -60,6 +66,9 @@ class EventsController < ApplicationController
         @event = Event.find(params[:id]);
 
         @event.destroy;
+
+        # Present a 1-time flash message to the user after redirect:
+        flash[:notice] = "Event '#{@event.name}' deleted successfully.";
 
         redirect_to(events_path);
     end
