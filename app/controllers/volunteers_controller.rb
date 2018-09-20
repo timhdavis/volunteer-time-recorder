@@ -52,6 +52,18 @@ class VolunteersController < ApplicationController
     end
 
 
+    def delete
+        @volunteer = Volunteer.find(params[:id]);
+    end
+
+    def destroy
+        @volunteer = Volunteer.find(params[:id]);
+
+        @volunteer.destroy;
+
+        redirect_to(volunteers_path);
+    end
+
     private
 
     # Defines the acceptable fields for Volunteer:
