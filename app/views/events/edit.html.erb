@@ -1,0 +1,37 @@
+<h1>Edit Event</h1>
+
+<%= form_for :event, url: event_path(@event), method: :patch do |form| %>
+
+    <%# Display any form errors at the top of the form: %>
+    <% if @event.errors.any? %>
+        <% @event.errors.full_messages.each do |error_message| %>
+            <div class="alert alert-danger"><%= error_message %></div>
+        <% end %>
+    <% end %>
+
+    <%# Display the form fields: %>
+
+    <p>
+        <%=form.label :name %><br>
+        <%= form.text_field(:name, {:class => 'form-control'}) %>
+    </p>
+
+    <p>
+        <%=form.label :year %><br>
+        <%= form.text_field(:year, {:class => 'form-control'}) %>
+    </p>
+
+    <p>
+        <%=form.label :website %><br>
+        <%= form.text_field(:website, {:class => 'form-control'}) %>
+    </p>
+
+    <p>
+        <%=form.label :description %><br>
+        <%= form.text_area(:description, {:class => 'form-control'}) %>
+    </p>
+
+    <p>
+        <%= form.submit({:class => 'btn btn-primary'}) %>
+    </p>
+<% end %>
