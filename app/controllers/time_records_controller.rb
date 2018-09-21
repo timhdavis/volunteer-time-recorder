@@ -7,6 +7,24 @@ class TimeRecordsController < ApplicationController
     def show
         # Get the time_record object that was selected:
         @time_record = TimeRecord.find(params[:id]);
+
+        # Get the associated event:
+        event_id = @time_record.event_id;
+
+        puts("Event ID found in time_record: " + event_id.to_s);
+
+        @event = Event.find(event_id);
+
+        puts("Event OBJECT found in time_record: " + @event.name);
+
+        # Get the associated event:
+        volunteer_id = @time_record.volunteer_id;
+
+        puts("Volunteer ID found in time_record: " + volunteer_id.to_s);
+
+        @volunteer = Volunteer.find(volunteer_id);
+
+        puts("Volunteer OBJECT found in time_record: " + @volunteer.email_address);
     end
 
     # Called when rendering the New TimeRecord page:
@@ -20,6 +38,10 @@ class TimeRecordsController < ApplicationController
         # Create a new time_record instance that will be used in the form:
         @time_record = TimeRecord.new(time_record_params);
 
+        # TODO : FIX to set to actual id from form:
+        # @time_record.event = Event.find(:event_id.to_i);
+        # @time_record.volunteer = Volunteer.find(:volunteer_id.to_i);
+
         if(@time_record.save)
             # Present a 1-time flash message to the user after redirect:
             flash[:notice] = "Time Record created successfully.";
@@ -30,7 +52,6 @@ class TimeRecordsController < ApplicationController
             # If validations prtime_recorded save, reload form (with error message):
             render 'new';
         end
-
     end
 
     # Called when rendering the Edit TimeRecord page:
@@ -77,6 +98,6 @@ class TimeRecordsController < ApplicationController
     # Defines the acceptable fields for time_record:
     def time_record_params
         params.require(:time_record).permit(:start_time, 
-            :end_time, :name, :category, :notes, :event, :volunteer);
+            :end_time, :name, :category, :notes, :event_id, :volunteer_id);
     end
 end

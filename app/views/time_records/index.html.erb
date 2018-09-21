@@ -10,7 +10,7 @@
 
 <% @time_records.each do |time_record| %>
     <div class="well">
-        <h3><%= event.name %></h3>
+        <h3><%= time_record.name %></h3>
         <p> Start Time: <%= time_record.start_time %> </p>
         <p> End Time: <%= time_record.end_time %> </p>
         <%= link_to "View Time Record Details", time_record_path(time_record),

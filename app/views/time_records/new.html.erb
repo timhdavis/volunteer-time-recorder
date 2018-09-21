@@ -1,0 +1,60 @@
+<h1>Add Time Record</h1>
+
+<%= form_for :time_record, url: time_records_path do |form| %>
+
+    <%# Display any form errors at the top of the form: %>
+    <% if @time_record.errors.any? %>
+        <% @time_record.errors.full_messages.each do |error_message| %>
+            <div class="alert alert-danger"><%= error_message %></div>
+        <% end %>
+    <% end %>
+
+    <%# Display the form fields: %>
+
+    <p>
+        <%=form.label :name %><br>
+        <%= form.text_field(:name, {:class => 'form-control'}) %>
+    </p>
+
+    <p>
+        <%=form.label :start_time %><br>
+        <%= form.datetime_select(:start_time, {:class => 'form-control'}) %>
+    </p>
+
+    <p>
+        <%=form.label :end_time %><br>
+        <%= form.datetime_select(:end_time, {:class => 'form-control'}) %>
+    </p>
+
+    <p>
+        <%=form.label :category %><br>
+        <%= form.text_field(:category, {:class => 'form-control'}) %>
+    </p>
+
+    <p>
+        <%=form.label :notes %><br>
+        <%= form.text_area(:notes, {:class => 'form-control'}) %>
+    </p>
+
+    <p>
+        <%=form.label :event_id %><br>
+        <%= form.collection_select(:event_id, Event.all, :id, :name) %>
+        <%# <%= form.select(:event, 
+            Event.all.map {|event| [event.name, event]},
+            {:class => 'form-control'}) %>
+    </p>
+
+    <p>
+        <%=form.label :volunteer_id %><br>
+
+        <%= form.collection_select(:volunteer_id, Volunteer.all, :id, :email_address) %>
+
+        <%# <%= form.select(:volunteer, 
+            Volunteer.all.map {|volunteer| [volunteer.email_address, volunteer]},
+            {:class => 'form-control'}) %>
+    </p>
+
+    <p>
+        <%= form.submit({:class => 'btn btn-primary'}) %>
+    </p>
+<% end %>

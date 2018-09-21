@@ -11,12 +11,12 @@
 <p>
     Details:
     <ul>
-        <li>Name: <%= @time_records.name %></li>
+        <li>Name: <%= @time_record.name %></li>
         <li>Start Time: <%= @time_record.start_time %></li>
         <li>End Time: <%= @time_record.end_time %></li>
         <li>Category: <%= @time_record.category %></li>
-        <li>Volunteer: <%= @time_record.volunteer.first_name %> <%= @time_records.volunteer.last_name %></li>
-        <li>Event: <%= @time_record.event.name %></li>
+        <li> Volunteer: <%= link_to((@volunteer.first_name + " " + @volunteer.last_name), volunteer_path(@volunteer)) %> </li>
+        <li> Event: <%= link_to(@event.name, event_path(@event)) %> </li>
     </ul>
 </p>
 
