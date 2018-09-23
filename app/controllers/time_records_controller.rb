@@ -31,6 +31,10 @@ class TimeRecordsController < ApplicationController
     def new
         # Create a new time_record instance that will be used in the form:
         @time_record = TimeRecord.new;
+
+        # Get all volunteer and event records for the form selection:
+        @volunteers = Volunteer.all;
+        @events = Event.all;
     end
 
     # Called when the New TimeRecord form is submitted:
@@ -58,6 +62,10 @@ class TimeRecordsController < ApplicationController
     def edit
         # Get the time_record object that was selected:
         @time_record = TimeRecord.find(params[:id]);
+
+        # Get all volunteer and event records for the form selection:
+        @volunteers = Volunteer.all;
+        @events = Event.all;
     end
 
     # Called when the Edit TimeRecord form is submitted:
