@@ -1,0 +1,9 @@
+<h1>Volunteers Index</h1>
+<% @volunteers.each do |volunteer| %>
+    <div class="well">
+        <h3><%= volunteer.first_name %> <%= volunteer.last_name %></h3>
+        <p> email: <%= volunteer.email_address %> </p>
+        <%= link_to "View Member Contact Details", volunteer_path(volunteer),
+            :class => 'btn btn-default' %>
+    </div>
+<% end %>

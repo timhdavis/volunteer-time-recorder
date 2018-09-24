@@ -1,0 +1,16 @@
+
+<div class="time_records delete">
+    <h1>Delete Time Record?</h1>
+
+    <%= form_for(@time_record, :method => 'delete') do |form| %>
+
+        <p>Are you sure you want to permanently delete this Time Record?</p>
+
+        <p class="reference-name"><%= @time_record.name %></p>
+
+        <div class="form-buttons">
+            <%= form.submit("Delete Time Record") %>
+        </div>
+
+    <% end %>
+</div>

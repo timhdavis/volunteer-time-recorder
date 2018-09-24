@@ -1,0 +1,19 @@
+<% if !flash[:notice].blank? %>
+    <div class="alert alert-success">
+        <%= flash[:notice] %>
+    </div>
+<% end %>
+
+<h1>Time Records Index</h1>
+
+<%= link_to "Add Time Record", new_time_record_path(@time_record), :class => 'btn btn-default' %>
+
+<% @time_records.each do |time_record| %>
+    <div class="well">
+        <h3><%= time_record.name %></h3>
+        <p> Start Time: <%= time_record.start_time %> </p>
+        <p> End Time: <%= time_record.end_time %> </p>
+        <%= link_to "View Time Record Details", time_record_path(time_record),
+            :class => 'btn btn-default' %>
+    </div>
+<% end %>

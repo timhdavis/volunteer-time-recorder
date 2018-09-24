@@ -1,0 +1,18 @@
+<% if !flash[:notice].blank? %>
+    <div class="alert alert-success">
+        <%= flash[:notice] %>
+    </div>
+<% end %>
+
+<h1>Events Index</h1>
+
+<%= link_to "Add Event", new_event_path(@event), :class => 'btn btn-default' %>
+
+<% @events.each do |event| %>
+    <div class="well">
+        <h3><%= event.name %></h3>
+        <p> Year: <%= event.year %> </p>
+        <%= link_to "View Event Details", event_path(event),
+            :class => 'btn btn-default' %>
+    </div>
+<% end %>

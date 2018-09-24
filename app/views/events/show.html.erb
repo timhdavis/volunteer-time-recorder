@@ -1,0 +1,27 @@
+<% if !flash[:notice].blank? %>
+    <div class="alert alert-success">
+        <%= flash[:notice] %>
+    </div>
+<% end %>
+
+<h1>Show Event</h1>
+
+<%= link_to "View All Events", events_path, :class => 'btn btn-default' %>
+
+<p>
+    Event Details:
+    <ul>
+        <li>Event Name: <%= @event.name %></li>
+        <li>Year: <%= @event.year %></li>
+        <li>Website: <%= @event.website %></li>
+    </ul>
+</p>
+
+<p>
+    Description: <br>
+    <%= @event.description %>
+</p>
+
+<%= link_to "Edit", edit_event_path(@event), :class => 'btn btn-default' %>
+
+<%= link_to("Delete", delete_event_path(@event), :class => 'btn btn-danger') %>

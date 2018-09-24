@@ -1,0 +1,24 @@
+<h1>Show Volunteer</h1>
+
+<%= link_to "View All Volunteers", volunteers_path, :class => 'btn btn-default' %>
+
+<p>
+    Member Details:
+    <ul>
+        <li>First Name: <%= @volunteer.first_name %></li>
+        <li>Last Name: <%= @volunteer.last_name %></li>
+        <li>Email: <%= @volunteer.email_address %></li>
+    </ul>
+</p>
+
+<p>
+    Notes: <br>
+    <%= @volunteer.notes %>
+</p>
+
+<%= link_to "Edit", edit_volunteer_path(@volunteer), :class => 'btn btn-default' %>
+
+<%= link_to("Delete", volunteer_path(@volunteer), 
+        method: :delete,
+        data: {confirm: 'Are you sure you want to permanently delete this volunteer record?'},
+        :class => 'btn btn-danger') %>
