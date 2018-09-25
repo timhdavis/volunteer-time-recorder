@@ -4,15 +4,29 @@
     </div>
 <% end %>
 
-<h1>Events Index</h1>
+<h1>Events</h1>
 
-<%= link_to "Add Event", new_event_path(@event), :class => 'btn btn-default' %>
+<p>
+    <%= link_to "Add Event", new_event_path(@event), :class => 'btn btn-primary' %>
+</p>
 
-<% @events.each do |event| %>
-    <div class="well">
-        <h3><%= event.name %></h3>
-        <p> Year: <%= event.year %> </p>
-        <%= link_to "View Event Details", event_path(event),
-            :class => 'btn btn-default' %>
-    </div>
-<% end %>
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+            <th scope="col">Event Name</th>
+            <th scope="col">Year</th>
+            <th scope="col">Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @events.each do |event| %>
+                <tr>
+                    <th scope="row"><%= link_to event.name, event_path(event) %></th>
+                    <td><%= event.year %></td>
+                    <td><%= link_to "View Event Details", event_path(event), :class => 'btn btn-secondary' %></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

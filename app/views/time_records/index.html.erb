@@ -4,34 +4,48 @@
     </div>
 <% end %>
 
-<h1>Time Records Index</h1>
+<h1>Time Records</h1>
 
 <h2>
     <% if(@parent_event) %>
-        Time Records for Event: <%= @parent_event.name %>
+        Time Records for Event: <%= link_to @parent_event.name, event_path(@parent_event) %>
     <% elsif(@parent_volunteer) %>
-        Time Records for Volunteer: <%= @parent_volunteer.first_name %>
+        Time Records for Volunteer: <%= link_to @parent_volunteer.first_name, volunteer_path(@parent_volunteer) %>
     <% else %>
         All Time Records
     <% end %>
 </h2>
 
-<% if(@parent_event) %>
-        <%= link_to "Add Time Record", new_time_record_path(@time_record, :event_id => @parent_event.id), :class => 'btn btn-default' %>
-<% elsif(@parent_volunteer) %>
-        <%= link_to "Add Time Record", new_time_record_path(@time_record, :volunteer_id => @parent_volunteer.id), :class => 'btn btn-default' %>
-<% else %>
-        <%= link_to "Add Time Record", new_time_record_path(@time_record), :class => 'btn btn-default' %>
-<% end %>
+<p>
+    <% if(@parent_event) %>
+        <%= link_to "Add Time Record", new_time_record_path(@time_record, :event_id => @parent_event.id), :class => 'btn btn-primary' %>
+    <% elsif(@parent_volunteer) %>
+        <%= link_to "Add Time Record", new_time_record_path(@time_record, :volunteer_id => @parent_volunteer.id), :class => 'btn btn-primary' %>
+    <% else %>
+        <%= link_to "Add Time Record", new_time_record_path(@time_record), :class => 'btn btn-primary' %>
+    <% end %>
+</p>
 
 
-
-<% @time_records.each do |time_record| %>
-    <div class="well">
-        <h3><%= time_record.name %></h3>
-        <p> Start Time: <%= time_record.start_time %> </p>
-        <p> End Time: <%= time_record.end_time %> </p>
-        <%= link_to "View Time Record Details", time_record_path(time_record),
-            :class => 'btn btn-default' %>
-    </div>
-<% end %>
+<div>
+    <table class="table table-striped table-bordered table-hover table-sm">
+        <thead class="thead-dark">
+            <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Start Time</th>
+            <th scope="col">End Time</th>
+            <th scope="col">More Info</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @time_records.each do |time_record| %>
+                <tr>
+                    <td><%= link_to time_record.name, time_record_path(time_record) %></td>
+                    <td><%= link_to time_record.start_time, time_record_path(time_record) %></td>
+                    <td><%= link_to time_record.end_time, time_record_path(time_record) %></td>
+                    <td><%= link_to "Details", time_record_path(time_record), :class => 'btn btn-secondary' %></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
