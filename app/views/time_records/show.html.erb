@@ -4,26 +4,86 @@
     </div>
 <% end %>
 
-<h1>Show Time Record</h1>
+<h5>Time Record</h5>
 
-<%= link_to "View All Time Records", time_records_path, :class => 'btn btn-default' %>
+<%= link_to "View All Time Records", time_records_path, :class => 'btn btn-light' %>
 
-<p>
-    Details:
-    <ul>
-        <li>Name: <%= @time_record.name %></li>
-        <li>Start Time: <%= @time_record.start_time %></li>
-        <li>End Time: <%= @time_record.end_time %></li>
-        <li>Category: <%= @time_record.category %></li>
-        <li> Volunteer: <%= link_to((@volunteer.first_name + " " + @volunteer.last_name), volunteer_path(@volunteer)) %> </li>
-        <li> Event: <%= link_to(@event.name, event_path(@event)) %> </li>
-    </ul>
-</p>
+<h2><%= @time_record.name %></h2>
 
-<p>
-    Description: <br>
-    <%= @time_record.notes %>
-</p>
+<div>
+    <table class="table table-sm">
+        <thead class="thead-light">
+            <tr>
+            <th scope="col"></th>
+            <th scope="col">Time</th>
+            <th scope="col">Day</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Start:</th>
+                <td><%= @time_record.start_time.strftime("%I:%M %p") %></td>
+                <td><%= @time_record.start_time.strftime("%a, %b %d") %></td>
+            </tr>
+            <tr>
+                <th scope="row">End:</th>
+                <td><%= @time_record.end_time.strftime("%I:%M %p") %></td>
+                <td><%= @time_record.end_time.strftime("%a, %b %d") %></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <table class="table table-sm">
+        <thead class="thead-light">
+            <tr>
+            <th scope="col">Details</th>
+            <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Volunteer:</th>
+                <td><%= link_to((@volunteer.first_name + " " + @volunteer.last_name), volunteer_path(@volunteer)) %></td>
+            </tr>
+            <tr>
+                <th scope="row">Event:</th>
+                <td><%= link_to(@event.name, event_path(@event)) %></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <table class="table table-sm">
+        <thead class="thead-light">
+            <tr>
+            <th scope="col">Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><%= @category_name  %></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <table class="table table-sm">
+        <thead class="thead-light">
+            <tr>
+            <th scope="col">Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><%= @time_record.notes %></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 <%= link_to "Edit", edit_time_record_path(@time_record), :class => 'btn btn-primary' %>
 

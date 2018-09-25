@@ -25,6 +25,11 @@ class TimeRecordsController < ApplicationController
         # Get the time_record object that was selected:
         @time_record = TimeRecord.find(params[:id]);
 
+        @category_name = @time_record.category;
+        if @category_name.empty?
+            @category_name = "[None]";
+        end
+
         # Get the associated event:
         event_id = @time_record.event_id;
 

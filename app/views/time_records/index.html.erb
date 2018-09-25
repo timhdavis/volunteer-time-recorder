@@ -32,6 +32,7 @@
         <thead class="thead-dark">
             <tr>
             <th scope="col">Name</th>
+            <th scope="col">Day</th>
             <th scope="col">Start Time</th>
             <th scope="col">End Time</th>
             <th scope="col">More Info</th>
@@ -41,8 +42,9 @@
             <% @time_records.each do |time_record| %>
                 <tr>
                     <td><%= link_to time_record.name, time_record_path(time_record) %></td>
-                    <td><%= link_to time_record.start_time, time_record_path(time_record) %></td>
-                    <td><%= link_to time_record.end_time, time_record_path(time_record) %></td>
+                    <td><%= link_to time_record.start_time.strftime("%a, %b %d"), time_record_path(time_record) %></td>
+                    <td><%= link_to time_record.start_time.strftime("%I:%M %p"), time_record_path(time_record) %></td>
+                    <td><%= link_to time_record.end_time.strftime("%I:%M %p"), time_record_path(time_record) %></td>
                     <td><%= link_to "Details", time_record_path(time_record), :class => 'btn btn-secondary' %></td>
                 </tr>
             <% end %>
