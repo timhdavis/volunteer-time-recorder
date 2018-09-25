@@ -1,15 +1,16 @@
-<div class="volunteers delete">
 
-    <h2>Delete Volunteer</h2>
+<div class="events delete">
+    <h1>Delete Volunteer?</h1>
 
-    <%= form_for(@volunteer, url: volunteer_path(@volunteer), method: => 'delete') do |form| %>
+    <%= form_for(@volunteer, :method => 'delete') do |form| %>
 
-        <p>Are you sure you want to permanently delete this volunteer?</p>
+        <p>Are you sure you want to permanently delete this volunteer record?</p>
 
-        <p class="reference-name"><%= form.object.name %></p>
+        <p class="reference-name"><%= @volunteer.first_name %> <%= @volunteer.last_name %></p>
 
         <div class="form-buttons">
             <%= form.submit("Delete Volunteer", {:class => 'btn btn-danger'}) %>
         </div>
+
     <% end %>
 </div>

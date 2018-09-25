@@ -45,7 +45,7 @@
         <tbody>
             <tr>
                 <th scope="row">Volunteer:</th>
-                <td><%= link_to((@volunteer.first_name + " " + @volunteer.last_name), volunteer_path(@volunteer)) %></td>
+                <td><%= link_to((@volunteer.first_name + " " + @volunteer.last_name + " <" + @volunteer.email_address + ">"), volunteer_path(@volunteer)) %></td>
             </tr>
             <tr>
                 <th scope="row">Event:</th>

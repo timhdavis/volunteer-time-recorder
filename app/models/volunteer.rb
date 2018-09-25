@@ -1,6 +1,6 @@
 class Volunteer < ApplicationRecord
 
-    has_many :time_records
+    has_many :time_records, :dependent => :delete_all
 
     # Attributes: first_name, last_name, email_address, notes
 
