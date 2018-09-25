@@ -6,6 +6,16 @@
 
 <h1>Time Records Index</h1>
 
+<h2>
+    <% if(@parent_event) %>
+        Time Records for Event: <%= @parent_event.name %>
+    <% elsif(@parent_volunteer) %>
+        Time Records for Volunteer: <%= @parent_volunteer.first_name %>
+    <% else %>
+        All Time Records
+    <% end %>
+</h2>
+
 <%= link_to "Add Time Record", new_time_record_path(@time_record), :class => 'btn btn-default' %>
 
 <% @time_records.each do |time_record| %>

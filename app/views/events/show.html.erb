@@ -25,3 +25,5 @@
 <%= link_to "Edit", edit_event_path(@event), :class => 'btn btn-default' %>
 
 <%= link_to("Delete", delete_event_path(@event), :class => 'btn btn-danger') %>
+
+<%= link_to "View Event Time Records", time_records_path(:event_id => @event.id), :class => 'btn btn-default' %>

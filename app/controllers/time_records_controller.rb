@@ -1,7 +1,20 @@
 class TimeRecordsController < ApplicationController
+    
+    # Before-Actions: (These will be executed before any public action below)
+    before_action :find_parent_event, :only => [:index];
+
+    # CRUD Actions:
+    
     def index
         # Get all time_record records from the database to display:
-        @time_records = TimeRecord.all;
+        # Check if a parent event was passed in (from "find_event" method below):
+        if (@parent_event) # Check if variable exists and is not nil.
+            puts("Filtering by event passed in.");
+            @time_records = @parent_event.time_records.all;
+        else
+            puts("NOT Filtering by event passed in.");
+            @time_records = TimeRecord.all;
+        end
     end
 
     def show
@@ -41,10 +54,6 @@ class TimeRecordsController < ApplicationController
     def create
         # Create a new time_record instance that will be used in the form:
         @time_record = TimeRecord.new(time_record_params);
-
-        # TODO : FIX to set to actual id from form:
-        # @time_record.event = Event.find(:event_id.to_i);
-        # @time_record.volunteer = Volunteer.find(:volunteer_id.to_i);
 
         if(@time_record.save)
             # Present a 1-time flash message to the user after redirect:
@@ -108,4 +117,24 @@ class TimeRecordsController < ApplicationController
         params.require(:time_record).permit(:start_time, 
             :end_time, :name, :category, :notes, :event_id, :volunteer_id);
     end
+
+
+    
+    # A Before-Action method to get the event passed from a different controller:
+    # Sets a variable 'parent_event' if an event object was passed in:
+    def find_parent_event
+        # Find event passed in from filter:
+        @parent_event = Event.find_by_id(params[:event_id]); # Will return an object or return nil.
+
+        # DEBUG ONLY:
+        puts("find_event: Event OBJECT passed in: " + @parent_event.to_s);
+        
+        if (@parent_event)
+            puts("found event: " + @parent_event.name);
+        else
+            puts("didn't find event.")
+        end
+    end
+
+
 end
