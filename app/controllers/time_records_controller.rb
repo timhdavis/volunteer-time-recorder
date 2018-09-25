@@ -1,8 +1,8 @@
 class TimeRecordsController < ApplicationController
     
     # Before-Actions: (These will be executed before any public action below)
-    before_action :find_parent_event, :only => [:index];
-    before_action :find_parent_volunteer, :only => [:index];
+    before_action :find_parent_event, :only => [:index, :new];
+    before_action :find_parent_volunteer, :only => [:index, :new];
 
     # CRUD Actions:
     
@@ -52,6 +52,23 @@ class TimeRecordsController < ApplicationController
         # Get all volunteer and event records for the form selection:
         @volunteers = Volunteer.all;
         @events = Event.all;
+
+        # Get preselected Event or Volunteer:
+        if (@parent_volunteer) # Check if variable exists and is not nil.
+            @selected_volunteer = @parent_volunteer;
+            puts("Set SELECTED_VOLUNTEER to " + @selected_volunteer.email_address);
+        else
+            @selected_volunteer = Volunteer.first;
+        end
+        
+        if (@parent_event) # Check if variable exists and is not nil.
+            @selected_event = @parent_event;
+            puts("Set SELECTED_EVENT to " + @selected_event.name);
+        else
+            @selected_event = Event.first;
+        end
+
+        
     end
 
     # Called when the New TimeRecord form is submitted:

@@ -38,13 +38,15 @@
 
     <p>
         <%=form.label :event_id %><br>
-        <%= form.collection_select(:event_id, @events, :id, :name) %>
+        <%= form.collection_select(:event_id, @events, :id, :name,
+                {:selected => @selected_event.id}) %>
     </p>
 
     <p>
         <%=form.label :volunteer_id %><br>
 
-        <%= form.collection_select(:volunteer_id, @volunteers, :id, :email_address) %>
+        <%= form.collection_select(:volunteer_id, @volunteers, :id, :email_address, 
+                {:selected => @selected_volunteer.id}) %>
     </p>
 
     <p>

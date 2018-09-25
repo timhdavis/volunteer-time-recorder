@@ -16,7 +16,15 @@
     <% end %>
 </h2>
 
-<%= link_to "Add Time Record", new_time_record_path(@time_record), :class => 'btn btn-default' %>
+<% if(@parent_event) %>
+        <%= link_to "Add Time Record", new_time_record_path(@time_record, :event_id => @parent_event.id), :class => 'btn btn-default' %>
+<% elsif(@parent_volunteer) %>
+        <%= link_to "Add Time Record", new_time_record_path(@time_record, :volunteer_id => @parent_volunteer.id), :class => 'btn btn-default' %>
+<% else %>
+        <%= link_to "Add Time Record", new_time_record_path(@time_record), :class => 'btn btn-default' %>
+<% end %>
+
+
 
 <% @time_records.each do |time_record| %>
     <div class="well">
