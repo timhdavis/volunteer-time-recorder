@@ -2,13 +2,17 @@ class TimeRecordsController < ApplicationController
     
     # Before-Actions: (These will be executed before any public action below)
     before_action :find_parent_event, :only => [:index];
+    before_action :find_parent_volunteer, :only => [:index];
 
     # CRUD Actions:
     
     def index
         # Get all time_record records from the database to display:
         # Check if a parent event was passed in (from "find_event" method below):
-        if (@parent_event) # Check if variable exists and is not nil.
+        if (@parent_volunteer) # Check if variable exists and is not nil.
+            puts("Filtering by volunteer passed in.");
+            @time_records = @parent_volunteer.time_records.all; 
+        elsif (@parent_event) # Check if variable exists and is not nil.
             puts("Filtering by event passed in.");
             @time_records = @parent_event.time_records.all;
         else
@@ -133,6 +137,22 @@ class TimeRecordsController < ApplicationController
             puts("found event: " + @parent_event.name);
         else
             puts("didn't find event.")
+        end
+    end
+
+    # A Before-Action method to get the event passed from a different controller:
+    # Sets a variable 'parent_event' if an event object was passed in:
+    def find_parent_volunteer
+        # Find event passed in from filter:
+        @parent_volunteer = Volunteer.find_by_id(params[:volunteer_id]); # Will return an object or return nil.
+
+        # DEBUG ONLY:
+        puts("find_volunteer: volunteer OBJECT passed in: " + @parent_volunteer.to_s);
+        
+        if (@parent_volunteer)
+            puts("found volunteer: " + @parent_volunteer.email_address);
+        else
+            puts("didn't find volunteer.")
         end
     end
 
