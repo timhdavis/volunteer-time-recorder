@@ -12,18 +12,33 @@
     <%# Display the form fields: %>
 
     <p>
+        <%=form.label :event_id %><br>
+        <%= form.collection_select(:event_id, @events, :id, :name,
+                {:selected => @selected_event.id}) %>
+        <%= link_to "Add Event", new_event_path, :class => 'btn btn-light btn-sm' %>
+    </p>
+
+    <p>
+        <%=form.label :volunteer_id %><br>
+
+        <%= form.collection_select(:volunteer_id, @volunteers, :id, :email_address, 
+                {:selected => @selected_volunteer.id}) %>
+        <%= link_to "Add Volunteer", new_volunteer_path, :class => 'btn btn-light btn-sm' %>
+    </p>
+
+    <p>
         <%=form.label :name %><br>
         <%= form.text_field(:name, {:class => 'form-control'}) %>
     </p>
 
     <p>
         <%=form.label :start_time %><br>
-        <%= form.datetime_select(:start_time, {:class => 'form-control'}) %>
+        <%= form.datetime_select(:start_time, :ampm => true, :minute_step => 15, :class => 'form-control') %>
     </p>
 
     <p>
         <%=form.label :end_time %><br>
-        <%= form.datetime_select(:end_time, {:class => 'form-control'}) %>
+        <%= form.datetime_select(:end_time, :ampm => true, :minute_step => 15, :class => 'form-control') %>
     </p>
 
     <p>
@@ -34,17 +49,6 @@
     <p>
         <%=form.label :notes %><br>
         <%= form.text_area(:notes, {:class => 'form-control'}) %>
-    </p>
-
-    <p>
-        <%=form.label :event_id %><br>
-        <%= form.collection_select(:event_id, @events, :id, :name) %>
-    </p>
-
-    <p>
-        <%=form.label :volunteer_id %><br>
-
-        <%= form.collection_select(:volunteer_id, @volunteers, :id, :email_address) %>
     </p>
 
     <p>

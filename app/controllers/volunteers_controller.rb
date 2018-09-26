@@ -22,6 +22,9 @@ class VolunteersController < ApplicationController
         @volunteer = Volunteer.new(volunteer_params);
 
         if(@volunteer.save)
+            # Present a 1-time flash message to the user after redirect:
+            flash[:notice] = "Volunteer created successfully.";
+
             # If saved to DB successfully, go to show page:
             redirect_to @volunteer;
         else
@@ -43,6 +46,9 @@ class VolunteersController < ApplicationController
         @volunteer = Volunteer.find(params[:id]);
 
         if(@volunteer.update(volunteer_params))
+            # Present a 1-time flash message to the user after redirect:
+            flash[:notice] = "Volunteer updated successfully.";
+
             # If saved to DB successfully, go to show page:
             redirect_to @volunteer;
         else
@@ -60,6 +66,9 @@ class VolunteersController < ApplicationController
         @volunteer = Volunteer.find(params[:id]);
 
         @volunteer.destroy;
+
+        # Present a 1-time flash message to the user after redirect:
+        flash[:notice] = "Volunteer '#{@volunteer.first_name} #{@volunteer.last_name}' deleted successfully.";
 
         redirect_to(volunteers_path);
     end

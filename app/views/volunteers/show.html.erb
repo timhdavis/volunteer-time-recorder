@@ -1,24 +1,69 @@
-<h1>Show Volunteer</h1>
+<% if !flash[:notice].blank? %>
+    <div class="alert alert-success">
+        <%= flash[:notice] %>
+    </div>
+<% end %>
 
-<%= link_to "View All Volunteers", volunteers_path, :class => 'btn btn-default' %>
-
-<p>
-    Member Details:
-    <ul>
-        <li>First Name: <%= @volunteer.first_name %></li>
-        <li>Last Name: <%= @volunteer.last_name %></li>
-        <li>Email: <%= @volunteer.email_address %></li>
-    </ul>
-</p>
+<h5>Volunteer Record</h5>
 
 <p>
-    Notes: <br>
-    <%= @volunteer.notes %>
+    <%= link_to "View All Volunteers", volunteers_path, :class => 'btn btn-light' %>
 </p>
 
-<%= link_to "Edit", edit_volunteer_path(@volunteer), :class => 'btn btn-default' %>
+<h2><%= @volunteer.first_name %> <%= @volunteer.last_name %></h2>
 
-<%= link_to("Delete", volunteer_path(@volunteer), 
-        method: :delete,
-        data: {confirm: 'Are you sure you want to permanently delete this volunteer record?'},
-        :class => 'btn btn-danger') %>
+<br>
+
+<div>
+    <table class="table table-sm">
+        <thead class="thead-light">
+            <tr>
+            <th scope="col">Contact Info</th>
+            <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">First Name:</th>
+                <td><%= @volunteer.first_name %></td>
+            </tr>
+            <tr>
+                <th scope="row">Last Name:</th>
+                <td><%= @volunteer.last_name %></td>
+            </tr>
+            <tr>
+                <th scope="row">Email:</th>
+                <td><%= @volunteer.email_address %></td>
+            </tr>
+            <tr>
+                <th scope="row">Phone:</th>
+                <td> TODO </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <table class="table table-sm">
+        <thead class="thead-light">
+            <tr>
+            <th scope="col">Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><%= @volunteer.notes  %></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<%= link_to "Edit", edit_volunteer_path(@volunteer), :class => 'btn btn-primary' %>
+
+<%= link_to("Delete", delete_volunteer_path(@volunteer), :class => 'btn btn-danger') %>
+
+<br>
+<br>
+
+<%= link_to "View Volunteer Time Records", time_records_path(:volunteer_id => @volunteer.id), :class => 'btn btn-info' %>
+

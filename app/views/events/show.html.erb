@@ -4,24 +4,61 @@
     </div>
 <% end %>
 
-<h1>Show Event</h1>
-
-<%= link_to "View All Events", events_path, :class => 'btn btn-default' %>
+<h5>Event Record</h5>
 
 <p>
-    Event Details:
-    <ul>
-        <li>Event Name: <%= @event.name %></li>
-        <li>Year: <%= @event.year %></li>
-        <li>Website: <%= @event.website %></li>
-    </ul>
+    <%= link_to "View All Events", events_path, :class => 'btn btn-light' %>
 </p>
 
-<p>
-    Description: <br>
-    <%= @event.description %>
-</p>
+<h2><%= @event.name %></h2>
 
-<%= link_to "Edit", edit_event_path(@event), :class => 'btn btn-default' %>
+<br>
+
+<div>
+    <table class="table table-sm">
+        <thead class="thead-light">
+            <tr>
+            <th scope="col">Event Info</th>
+            <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Event Name:</th>
+                <td><%= @event.name %></td>
+            </tr>
+            <tr>
+                <th scope="row">Year:</th>
+                <td><%= @event.year %></td>
+            </tr>
+            <tr>
+                <th scope="row">Website:</th>
+                <td><%= @event.website %></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <table class="table table-sm">
+        <thead class="thead-light">
+            <tr>
+            <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><%= @event.description %></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<%= link_to "Edit", edit_event_path(@event), :class => 'btn btn-primary' %>
 
 <%= link_to("Delete", delete_event_path(@event), :class => 'btn btn-danger') %>
+
+<br>
+<br>
+
+<%= link_to "View Event Time Records", time_records_path(:event_id => @event.id), :class => 'btn btn-info' %>

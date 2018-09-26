@@ -1,3 +1,3 @@
 class Event < ApplicationRecord
-    has_many :time_records
+    has_many :time_records, :dependent => :delete_all
 end
