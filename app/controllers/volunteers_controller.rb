@@ -78,7 +78,7 @@ class VolunteersController < ApplicationController
     # Defines the acceptable fields for Volunteer:
     def volunteer_params
         params.require(:volunteer).permit(:first_name, 
-            :last_name,:email_address, :notes);
+            :last_name,:email_address, :phone, :notes);
     end
 
 

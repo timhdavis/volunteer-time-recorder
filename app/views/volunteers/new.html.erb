@@ -27,6 +27,11 @@
     </p>
 
     <p>
+        <%=form.label :phone %><br>
+        <%= form.text_field(:phone, {:class => 'form-control'}) %>
+    </p>
+
+    <p>
         <%=form.label :notes %><br>
         <%= form.text_area(:notes, {:class => 'form-control'}) %>
     </p>
