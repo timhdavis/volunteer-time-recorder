@@ -4,39 +4,7 @@
 
 <%= form_for :volunteer, url: volunteer_path(@volunteer), method: :patch do |form| %>
 
-    <%# Display any form errors at the top of the form: %>
-    <% if @volunteer.errors.any? %>
-        <% @volunteer.errors.full_messages.each do |error_message| %>
-            <div class="alert alert-danger"><%= error_message %></div>
-        <% end %>
-    <% end %>
-
-    <%# Display the form fields: %>
-
-    <p>
-        <%=form.label :first_name %><br>
-        <%= form.text_field(:first_name, {:class => 'form-control'}) %>
-    </p>
-
-    <p>
-        <%=form.label :last_name %><br>
-        <%= form.text_field(:last_name, {:class => 'form-control'}) %>
-    </p>
-
-    <p>
-        <%=form.label :email_address %><br>
-        <%= form.text_field(:email_address, {:class => 'form-control'}) %>
-    </p>
-
-    <p>
-        <%=form.label :phone %><br>
-        <%= form.text_field(:phone, {:class => 'form-control'}) %>
-    </p>
-
-    <p>
-        <%=form.label :notes %><br>
-        <%= form.text_area(:notes, {:class => 'form-control'}) %>
-    </p>
+    <%= render(:partial => 'form', :locals => {:form => form}) %>
 
     <p>
         <%= form.submit({:class => 'btn btn-primary'}) %>
