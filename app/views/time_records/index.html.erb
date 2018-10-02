@@ -4,9 +4,9 @@
 
 <h2>
     <% if(@parent_event) %>
-        Time Records for Event: <%= link_to @parent_event.name, event_path(@parent_event) %>
+        Time Records for Event: <%= link_to event_title(@parent_event), event_path(@parent_event) %>
     <% elsif(@parent_volunteer) %>
-        Time Records for Volunteer: <%= link_to (@parent_volunteer.first_name + " " + @parent_volunteer.last_name), volunteer_path(@parent_volunteer) %>
+        Time Records for Volunteer: <%= link_to (full_name(@parent_volunteer)), volunteer_path(@parent_volunteer) %>
     <% else %>
         All Time Records
     <% end %>
