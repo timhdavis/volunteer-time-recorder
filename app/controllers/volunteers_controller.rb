@@ -2,7 +2,13 @@ class VolunteersController < ApplicationController
 
     def index
         # Get all volunteer records from the database to display:
-        @volunteers = Volunteer.all;
+
+        # Check if a 'search' parameter was passed in:
+        if params[:search]
+            @volunteers = Volunteer.search(params[:search]);
+        else
+            @volunteers = Volunteer.all;
+        end
     end
 
     def show
