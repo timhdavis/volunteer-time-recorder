@@ -51,3 +51,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Added gems:
 gem 'coffee-script-source', '1.8.0' # This is to help with error. See: https://stackoverflow.com/questions/12520456/execjsruntimeerror-on-windows-trying-to-follow-rubytutorial
+gem 'bootstrap', '~> 4.1', '>= 4.1.3'
+
+gem 'faker' # For generating random test data in seed file.
