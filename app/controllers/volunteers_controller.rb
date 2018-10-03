@@ -5,9 +5,9 @@ class VolunteersController < ApplicationController
 
         # Check if a 'search' parameter was passed in:
         if params[:search]
-            @volunteers = Volunteer.search(params[:search]);
+            @volunteers = Volunteer.search(params[:search]).sorted;
         else
-            @volunteers = Volunteer.all;
+            @volunteers = Volunteer.sorted;
         end
     end
 
