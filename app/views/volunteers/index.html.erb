@@ -46,3 +46,5 @@
 <% if @volunteers.blank? %>
   <h4>There are no volunteers with name containing '<%= params[:search] %>'.</h4>
 <% end %>
+
+<%= will_paginate @volunteers, renderer: BootstrapPagination::Rails %>

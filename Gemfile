@@ -54,3 +54,6 @@ gem 'coffee-script-source', '1.8.0' # This is to help with error. See: https://s
 gem 'bootstrap', '~> 4.1', '>= 4.1.3'
 
 gem 'faker' # For generating random test data in seed file.
+
+gem 'will_paginate', '~> 3.1.0' # For simple pagination on index pages.
+gem 'will_paginate-bootstrap', '~> 1.0', '>= 1.0.1'
