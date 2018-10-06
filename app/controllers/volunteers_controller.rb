@@ -5,9 +5,9 @@ class VolunteersController < ApplicationController
 
         # Check if a 'search' parameter was passed in:
         if params[:search]
-            @volunteers = Volunteer.search(params[:search]).sorted.paginate(:page => params[:page], :per_page => 10);
+            @volunteers = Volunteer.search(params[:search]).sorted.page(params[:page]).per(10); #paginate(:page => params[:page], :per_page => 10);
         else
-            @volunteers = Volunteer.sorted.paginate(:page => params[:page], :per_page => 10);
+            @volunteers = Volunteer.sorted.page(params[:page]).per(10); #paginate(:page => params[:page], :per_page => 10);
         end
     end
 
