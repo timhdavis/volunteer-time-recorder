@@ -47,3 +47,15 @@
         </tbody>
     </table>
 </div>
+
+<% if @time_records.blank? %>
+  <h4>
+    <% if(@parent_event) %>
+        No Time Records for Event: <%= event_title(@parent_event) %>
+    <% elsif(@parent_volunteer) %>
+        No Time Records for Volunteer: <%= full_name(@parent_volunteer) %>
+    <% else %>
+        No Time Records yet.
+    <% end %>
+  </h4>
+<% end %>
