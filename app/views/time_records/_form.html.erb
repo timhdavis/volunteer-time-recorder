@@ -9,16 +9,19 @@
 
 <p>
     <%=form.label :event_id %><br>
-    <%= form.collection_select(:event_id, @events, :id, :event_title,
-            {:selected => @selected_event.id}) %>
+    <% if (@events.first) # Check if there are any Event records: %>
+      <%= form.collection_select(:event_id, @events, :id, :event_title,
+            {:selected => @selected_event.id }) %>
+    <% end %>
     <%= link_to "Add Event", new_event_path, :class => 'btn btn-light btn-sm' %>
 </p>
 
 <p>
     <%=form.label :volunteer_id %><br>
-
-    <%= form.collection_select(:volunteer_id, @volunteers, :id, :full_name_with_email, 
+    <% if (@volunteers.first) # Check if there are any Volunteer records: %>
+      <%= form.collection_select(:volunteer_id, @volunteers, :id, :full_name_with_email,
             {:selected => @selected_volunteer.id}) %>
+    <% end %>
     <%= link_to "Add Volunteer", new_volunteer_path, :class => 'btn btn-light btn-sm' %>
 </p>
 
