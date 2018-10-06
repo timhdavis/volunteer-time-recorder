@@ -14,4 +14,14 @@ class Volunteer < ApplicationRecord
     scope :sorted, lambda { order("first_name ASC") }
     scope :search, lambda { |query| where(["first_name LIKE ? OR last_name LIKE ?", "%#{query}%", "%#{query}%"]) }
 
+    # Other methods:
+
+    def full_name
+        return (self.first_name.to_s + " " + self.last_name.to_s);
+    end
+
+    def full_name_with_email
+        return (self.first_name.to_s + " " + self.last_name.to_s + " <" + self.email_address + ">");
+    end
+
 end
