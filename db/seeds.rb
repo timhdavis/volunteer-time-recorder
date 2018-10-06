@@ -9,11 +9,14 @@
 require 'faker'
 include Faker
 
-5.times do
+150.times do
+    random_first_name = Faker::Name.first_name;
+    random_last_name = Faker::Name.last_name;
+
     Volunteer.create(
-        first_name: Faker::Name.first_name,
-        last_name: Faker::Name.last_name,
-        email_address: Faker::Internet.email,
+        first_name: random_first_name,
+        last_name: random_last_name,
+        email_address: random_first_name.to_s.downcase.delete(' ') + "." + random_last_name.to_s.downcase.delete(' ') + "@email.com",
         phone: Faker::PhoneNumber.phone_number,
         notes: "This is a fake record for example purposes only."
     )
