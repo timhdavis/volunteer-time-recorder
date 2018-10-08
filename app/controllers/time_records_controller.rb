@@ -101,6 +101,10 @@ class TimeRecordsController < ApplicationController
         # Get all volunteer and event records for the form selection:
         @volunteers = Volunteer.all;
         @events = Event.all;
+
+        # Set the default selected event & volunteer in the form:
+        @selected_event = Event.find(@time_record.event_id);
+        @selected_volunteer = Volunteer.find(@time_record.volunteer_id);
     end
 
     # Called when the Edit TimeRecord form is submitted:

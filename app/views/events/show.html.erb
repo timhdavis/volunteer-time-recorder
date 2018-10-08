@@ -1,8 +1,4 @@
-<% if !flash[:notice].blank? %>
-    <div class="alert alert-success">
-        <%= flash[:notice] %>
-    </div>
-<% end %>
+<% @page_title = "View Event" %>
 
 <h5>Event Record</h5>
 
@@ -10,7 +6,7 @@
     <%= link_to "View All Events", events_path, :class => 'btn btn-light' %>
 </p>
 
-<h2><%= @event.name %></h2>
+<h2><%= event_title(@event) %></h2>
 
 <br>
 

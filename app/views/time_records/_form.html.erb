@@ -1,0 +1,51 @@
+<%# Display any form errors at the top of the form: %>
+<% if @time_record.errors.any? %>
+    <% @time_record.errors.full_messages.each do |error_message| %>
+        <div class="alert alert-danger"><%= error_message %></div>
+    <% end %>
+<% end %>
+
+<%# Display the form fields: %>
+
+<p>
+    <%=form.label :event_id %><br>
+    <% if (@events.first) # Check if there are any Event records: %>
+      <%= form.collection_select(:event_id, @events, :id, :event_title,
+            {:selected => @selected_event.id }) %>
+    <% end %>
+    <%= link_to "Add Event", new_event_path, :class => 'btn btn-light btn-sm' %>
+</p>
+
+<p>
+    <%=form.label :volunteer_id %><br>
+    <% if (@volunteers.first) # Check if there are any Volunteer records: %>
+      <%= form.collection_select(:volunteer_id, @volunteers, :id, :full_name_with_email,
+            {:selected => @selected_volunteer.id}) %>
+    <% end %>
+    <%= link_to "Add Volunteer", new_volunteer_path, :class => 'btn btn-light btn-sm' %>
+</p>
+
+<p>
+    <%=form.label :name %><br>
+    <%= form.text_field(:name, {:class => 'form-control'}) %>
+</p>
+
+<p>
+    <%=form.label :start_time %><br>
+    <%= form.datetime_select(:start_time, :ampm => true, :minute_step => 15, :class => 'form-control') %>
+</p>
+
+<p>
+    <%=form.label :end_time %><br>
+    <%= form.datetime_select(:end_time, :ampm => true, :minute_step => 15, :class => 'form-control') %>
+</p>
+
+<p>
+    <%=form.label :category %><br>
+    <%= form.text_field(:category, {:class => 'form-control'}) %>
+</p>
+
+<p>
+    <%=form.label :notes %><br>
+    <%= form.text_area(:notes, {:class => 'form-control'}) %>
+</p>

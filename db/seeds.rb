@@ -5,3 +5,19 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+require 'faker'
+include Faker
+
+150.times do
+    random_first_name = Faker::Name.first_name;
+    random_last_name = Faker::Name.last_name;
+
+    Volunteer.create(
+        first_name: random_first_name,
+        last_name: random_last_name,
+        email_address: random_first_name.to_s.downcase.delete(' ') + "." + random_last_name.to_s.downcase.delete(' ') + "@email.com",
+        phone: Faker::PhoneNumber.phone_number,
+        notes: "This is a fake record for example purposes only."
+    )
+end

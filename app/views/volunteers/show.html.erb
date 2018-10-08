@@ -1,8 +1,4 @@
-<% if !flash[:notice].blank? %>
-    <div class="alert alert-success">
-        <%= flash[:notice] %>
-    </div>
-<% end %>
+<% @page_title = "View Volunteer" %>
 
 <h5>Volunteer Record</h5>
 
@@ -10,7 +6,7 @@
     <%= link_to "View All Volunteers", volunteers_path, :class => 'btn btn-light' %>
 </p>
 
-<h2><%= @volunteer.first_name %> <%= @volunteer.last_name %></h2>
+<h2><%= full_name(@volunteer) %></h2>
 
 <br>
 
@@ -37,7 +33,7 @@
             </tr>
             <tr>
                 <th scope="row">Phone:</th>
-                <td> TODO </td>
+                <td><%= @volunteer.phone %></td>
             </tr>
         </tbody>
     </table>

@@ -2,7 +2,13 @@ class VolunteersController < ApplicationController
 
     def index
         # Get all volunteer records from the database to display:
-        @volunteers = Volunteer.all;
+
+        # Check if a 'search' parameter was passed in:
+        if params[:search]
+            @volunteers = Volunteer.search(params[:search]).sorted.page(params[:page]).per(10); #paginate(:page => params[:page], :per_page => 10);
+        else
+            @volunteers = Volunteer.sorted.page(params[:page]).per(10); #paginate(:page => params[:page], :per_page => 10);
+        end
     end
 
     def show
@@ -78,7 +84,7 @@ class VolunteersController < ApplicationController
     # Defines the acceptable fields for Volunteer:
     def volunteer_params
         params.require(:volunteer).permit(:first_name, 
-            :last_name,:email_address, :notes);
+            :last_name,:email_address, :phone, :notes);
     end
 
 
