@@ -46,9 +46,13 @@
 </div>
 
 <% if @volunteers.blank? %>
-  <h4>There are no volunteers with name containing '<%= params[:search] %>'.</h4>
+  <% if params[:search] %>
+    <h4>There are no volunteers with name containing '<%= params[:search] %>'.</h4>
+  <% else %>
+    <h4>There are no volunteers yet.</h4>
+  <% end %>
 <% end %>
 
-<%# <%= will_paginate @volunteers, renderer: BootstrapPagination::Rails %> 
+<%# <%= will_paginate @volunteers, renderer: BootstrapPagination::Rails %>
 
 <%= paginate @volunteers %>
