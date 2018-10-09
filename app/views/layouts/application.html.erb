@@ -8,6 +8,9 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- Custom styles for this template -->
+    <%# <link href="sticky-footer.css" rel="stylesheet"> %>
+    <%= stylesheet_link_tag    'https://getbootstrap.com/docs/4.1/examples/sticky-footer/sticky-footer.css' %>
   </head>
 
   <body>
@@ -24,6 +27,24 @@
 
       <%= yield %>
     </div>
+
+
+    <%# <!-- Footer -->
+    <footer class="page-footer font-small blue">
+
+      <!-- Copyright -->
+      <div class="footer-copyright text-center py-3">© 2018 Copyright:
+        <a href="https://mdbootstrap.com/bootstrap-tutorial/"> MDBootstrap.com</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <!-- Footer --> %>
+
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">created by timhdavis</span>
+      </div>
+    </footer>
 
   </body>
 </html>
