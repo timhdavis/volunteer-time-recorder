@@ -15,12 +15,16 @@ class VolunteersController < ApplicationController
         # Get the volunteer object that was selected:
         @volunteer = Volunteer.find(params[:id]);
 
-        @membership_type_name = "Basic";
+        @membership_type_name = "Basic"; # TODO: Get from MemberType.
 
-        @total_hours_text = "0 hours";
-        @quota_hours_text = "0 hours";
+        total_hours = total_time_for_all_time_records(@volunteer.time_records);
+        @total_hours_text = total_hours.to_s + " hours";
 
-        @progress_percent = "50";
+        quota_hours = 10; # TODO: Get from MemberType.
+        @quota_hours_text = quota_hours.to_s + " hours";
+
+        percent = (total_hours / quota_hours) * 100;
+        @progress_percent = percent.to_s;
     end
 
     # Called when rendering the New Volunteer page:
@@ -94,6 +98,15 @@ class VolunteersController < ApplicationController
             :last_name,:email_address, :phone, :notes);
     end
 
+    def total_time_for_all_time_records(time_records)
+        sum = 0;
+
+        time_records.each do |time_record|
+            sum += time_record.total_hours;
+        end
+
+        return sum;
+    end
 
 
 end
