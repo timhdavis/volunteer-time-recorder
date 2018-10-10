@@ -19,7 +19,10 @@
         <ul class="navbar-nav navbar-right">
         <li class="nav-item active">
         <li class="nav-item">
-        <%= link_to "Add Time Record", new_time_record_path, {:class => "btn btn-success"} %>
+        <%# <%= link_to "Add Time Record", new_time_record_path, {:class => "btn btn-success"} %>
+        <%= link_to(new_volunteer_path(@volunteer), :class => 'btn btn-success') do %>
+            <span class="glyphicon glyphicon-plus"></span>Add Time Record
+        <% end %>
         </li>
     </ul>
     </div>

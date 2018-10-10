@@ -19,13 +19,16 @@
 
     <div class="container">
 
-      <% if !flash[:notice].blank? %>
-        <div class="alert alert-success">
-            <%= flash[:notice] %>
-        </div>
-      <% end %>
+      <div class="app-yield-content">
+        <% if !flash[:notice].blank? %>
+          <div class="alert alert-success">
+              <%= flash[:notice] %>
+          </div>
+        <% end %>
 
-      <%= yield %>
+        <%= yield %>
+      </div>
+
     </div>
 
 
