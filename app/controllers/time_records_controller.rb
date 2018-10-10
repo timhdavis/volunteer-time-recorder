@@ -24,6 +24,8 @@ class TimeRecordsController < ApplicationController
     def show
         # Get the time_record object that was selected:
         @time_record = TimeRecord.find(params[:id]);
+        
+        @total_time_text = TimeDifference.between(@time_record.start_time, @time_record.end_time).humanize;
 
         @category_name = @time_record.category;
         if @category_name.empty?

@@ -72,3 +72,5 @@ gem 'faker' # For generating random test data in seed file.
 #gem 'will_paginate-bootstrap', '~> 1.0', '>= 1.0.1'
 
 gem 'kaminari' # An alternative pagination gem.
+
+gem 'time_difference' # For more readible time calculations.
