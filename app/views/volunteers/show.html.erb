@@ -43,6 +43,51 @@
     <table class="table table-sm">
         <thead class="thead-light">
             <tr>
+            <th scope="col">Membership Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><%= @membership_type_name %></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<%# TODO: For Events: %>
+<div>
+    <table class="table table-sm">
+        <thead class="thead-light">
+            <tr>
+            <th scope="col">Hours</th>
+            <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Total Hours:</th>
+                <td><%= @total_hours_text %></td>
+            </tr>
+            <tr>
+                <th scope="row">Member Quota:</th>
+                <td><%= @quota_hours_text %></td>
+            </tr>
+            <tr>
+                <th scope="row">Progress:</th>
+                <td>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="<%= "width: " + @progress_percent + "%;" %>" aria-valuenow=<%= @progress_percent %> aria-valuemin="0" aria-valuemax="100"><%= @progress_percent %>%</div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <table class="table table-sm">
+        <thead class="thead-light">
+            <tr>
             <th scope="col">Notes</th>
             </tr>
         </thead>

@@ -14,6 +14,13 @@ class VolunteersController < ApplicationController
     def show
         # Get the volunteer object that was selected:
         @volunteer = Volunteer.find(params[:id]);
+
+        @membership_type_name = "Basic";
+
+        @total_hours_text = "0 hours";
+        @quota_hours_text = "0 hours";
+
+        @progress_percent = "50";
     end
 
     # Called when rendering the New Volunteer page:
