@@ -1,0 +1,17 @@
+<% @page_title = "Delete Member Type" %>
+
+<div class="member_type delete">
+    <h1>Delete Member Type?</h1>
+
+    <%= form_for(@member_type, :method => 'delete') do |form| %>
+
+        <p>Are you sure you want to permanently delete this Member Type record?</p>
+
+        <p class="reference-name"><%= @member_type.name %></p>
+
+        <div class="form-buttons">
+            <%= form.submit("Delete Member Type", {:class => 'btn btn-danger'}) %>
+        </div>
+
+    <% end %>
+</div>

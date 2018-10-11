@@ -1,0 +1,12 @@
+<% @page_title = "Add Member Type" %>
+
+<h1>Add Member Type</h1>
+
+<%= form_for :member_type, url: member_types_path do |form| %>
+
+    <%= render(:partial => 'form', :locals => {:form => form}) %>
+
+    <p>
+        <%= form.submit({:class => 'btn btn-primary'}) %>
+    </p>
+<% end %>

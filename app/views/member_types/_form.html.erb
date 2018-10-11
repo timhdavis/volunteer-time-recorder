@@ -1,0 +1,23 @@
+<%# Display any form errors at the top of the form: %>
+<% if @member_type.errors.any? %>
+    <% @member_type.errors.full_messages.each do |error_message| %>
+        <div class="alert alert-danger"><%= error_message %></div>
+    <% end %>
+<% end %>
+
+<%# Display the form fields: %>
+
+<p>
+    <%=form.label :name %><br>
+    <%= form.text_field(:name, {:class => 'form-control'}) %>
+</p>
+
+<p>
+    <%=form.label :quota_hours %><br>
+    <%= form.text_field(:quota_hours, {:class => 'form-control'}) %>
+</p>
+
+<p>
+    <%=form.label :details %><br>
+    <%= form.text_area(:details, {:class => 'form-control'}) %>
+</p>
