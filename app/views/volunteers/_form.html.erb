@@ -28,6 +28,14 @@
 </p>
 
 <p>
+    <%=form.label :member_type_id %><br>
+    <% if (@member_types.first) # Check if there are any Member Type records: %>
+      <%= form.collection_select(:member_type_id, @member_types, :id, :name) %>
+    <% end %>
+    <%= link_to "Add Member Type", new_member_type_path, :class => 'btn btn-light btn-sm' %>
+</p>
+
+<p>
     <%=form.label :notes %><br>
     <%= form.text_area(:notes, {:class => 'form-control'}) %>
 </p>
