@@ -48,7 +48,7 @@
         </thead>
         <tbody>
             <tr>
-                <td><%= @membership_type_name %></td>
+                <td><%= link_to(@member_type.name, member_type_path(@member_type)) %></td>
             </tr>
         </tbody>
     </table>
@@ -66,11 +66,11 @@
         <tbody>
             <tr>
                 <th scope="row">Total Hours:</th>
-                <td><%= @total_hours_text %></td>
+                <td><%= link_to(number_with_precision(@total_hours, precision: 2,  strip_insignificant_zeros: true) + " hours", time_records_path(:volunteer_id => @volunteer.id)) %></td>
             </tr>
             <tr>
                 <th scope="row">Member Quota:</th>
-                <td><%= @quota_hours_text %></td>
+                <td><%= link_to(@quota_hours.to_s + " hours", member_type_path(@member_type)) %></td>
             </tr>
             <tr>
                 <th scope="row">Progress:</th>
@@ -105,6 +105,6 @@
 
 <br>
 <br>
+<%= link_to "Add Time Record", new_time_record_path(:volunteer_id => @volunteer.id), :class => 'btn btn-primary' %>
 
 <%= link_to "View Volunteer Time Records", time_records_path(:volunteer_id => @volunteer.id), :class => 'btn btn-info' %>
-

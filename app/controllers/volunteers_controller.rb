@@ -16,17 +16,14 @@ class VolunteersController < ApplicationController
         @volunteer = Volunteer.find(params[:id]);
 
         # Get the associated member type:
-        member_type = MemberType.find(@volunteer.member_type_id);
+        @member_type = MemberType.find(@volunteer.member_type_id);
 
-        @membership_type_name = member_type.name;
+        @total_hours = total_time_for_all_time_records(@volunteer.time_records);
+        #@total_hours_text = total_hours.to_s + " hours";
 
-        total_hours = total_time_for_all_time_records(@volunteer.time_records);
-        @total_hours_text = total_hours.to_s + " hours";
+        @quota_hours = @member_type.quota_hours;
 
-        quota_hours = member_type.quota_hours;
-        @quota_hours_text = quota_hours.to_s + " hours";
-
-        percent = (total_hours / quota_hours) * 100;
+        percent = (@total_hours / @quota_hours) * 100;
         @progress_percent = percent.round(1).to_s;
     end
 
