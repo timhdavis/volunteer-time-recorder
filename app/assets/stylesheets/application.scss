@@ -19,8 +19,13 @@
      padding-bottom: 1em;
  }
 
+ .footer {
+   text-align: right;
+ }
+
+ .footer-text {
+   padding-right: 50px;
+ }
+
  // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
-
-
-
