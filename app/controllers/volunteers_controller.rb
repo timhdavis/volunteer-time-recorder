@@ -38,6 +38,12 @@ class VolunteersController < ApplicationController
 
     # Called when rendering the New Volunteer page:
     def new
+        # Check if can create a Volunteer yet:
+        # Check if there are any MemberTypes yet:
+        if MemberType.count < 1
+          render 'warn_cannot_add'
+        end
+
         # Create a new volunteer instance that will be used in the form:
         @volunteer = Volunteer.new;
 
