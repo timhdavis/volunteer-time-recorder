@@ -14,9 +14,12 @@
  * require_self
  */
 
+
  .app-yield-content {
      padding-top: 1em;
      padding-bottom: 1em;
+     //max-width: 2000px;
+     margin: auto;
  }
 
  .footer-text {
@@ -25,5 +28,11 @@
    background-color: #eee;
  }
 
+
+
  // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+
+.container {
+ max-width: 900px;
+}

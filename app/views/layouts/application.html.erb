@@ -17,9 +17,10 @@
 
     <%= render(:partial => 'layouts/navbar') %>
 
-    <div class="container">
 
-      <div class="app-yield-content">
+
+    <div class="app-yield-content">
+      <div class="container">
         <% if !flash[:notice].blank? %>
           <div class="alert alert-success">
               <%= flash[:notice] %>
@@ -27,8 +28,8 @@
         <% end %>
 
         <%= yield %>
-      </div>
 
+      </div>
     </div>
 
 
@@ -46,7 +47,7 @@
     <footer class="footer">
       <div class="footer-text">
         <span class="text-muted">
-          created by <a href="https://github.com/timhdavis">timhdavis</a>
+          created by <a href="https://github.com/timhdavis" target="_blank">timhdavis</a>
         </span>
       </div>
     </footer>
