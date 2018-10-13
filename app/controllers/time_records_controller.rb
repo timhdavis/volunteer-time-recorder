@@ -53,6 +53,12 @@ class TimeRecordsController < ApplicationController
 
     # Called when rendering the New TimeRecord page:
     def new
+        # Check if can create a Time Record yet:
+        # Check if there are any Events or Volunteers yet:
+        if Event.count < 1 || Volunteer.count < 1
+          render 'warn_cannot_add'
+        end
+
         # Create a new time_record instance that will be used in the form:
         @time_record = TimeRecord.new;
 
