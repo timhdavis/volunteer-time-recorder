@@ -11,14 +11,27 @@
 <form class="form-inline">
     <div class="form-group">
         <%= form_tag(volunteers_path, :method => "get", id: "search-form") do %>
-            <%= text_field_tag :search, params[:search], placeholder: "Search", :class => "form-control" %>
+            <%= text_field_tag :search, params[:search], placeholder: "Search by name", :class => "form-control" %>
             <%= submit_tag("Search", :name => nil, :class => 'btn btn-outline-secondary') %>
         <% end %>
     </div>
 </form>
 
-
 <br>
+
+<div>
+  <% if(params[:search].present?) %>
+    <p>
+        Searching with: '<%= params[:search].to_s %>'
+    </p>
+  <% end %>
+
+  <% if(params[:member_type].present?) %>
+    <p>
+      Volunteers with Member Type: <%= link_to @member_type_filter.name, member_type_path(@member_type_filter) %>
+    </p>
+  <% end %>
+</div>
 
 <%= paginate @volunteers %>
 
@@ -48,6 +61,8 @@
 <% if @volunteers.blank? %>
   <% if params[:search] %>
     <h4>There are no volunteers with name containing '<%= params[:search] %>'.</h4>
+  <% elsif params[:member_type] %>
+    <h4>There are no volunteers with member type '<%= @member_type_filter.name %>' yet.</h4>
   <% else %>
     <h4>There are no volunteers yet.</h4>
   <% end %>

@@ -1,4 +1,5 @@
 class MemberTypesController < ApplicationController
+
     def index
         # Get all member_type records from the database to display:
         @member_types = MemberType.all;
@@ -7,6 +8,9 @@ class MemberTypesController < ApplicationController
     def show
         # Get the member_type object that was selected:
         @member_type = MemberType.find(params[:id]);
+
+        # Get a list of all volunteers with this member type:
+        @volunteers_with_member_type = Volunteer.find_by_member_type_id(params[:id]);
     end
 
     # Called when rendering the New MemberType page:
@@ -59,6 +63,13 @@ class MemberTypesController < ApplicationController
 
     def delete
         @member_type = MemberType.find(params[:id]);
+
+        @volunteers_with_member_type = Volunteer.find_by_member_type_id(params[:id]);
+
+        # Prevent user from deleting this Member Type if any volunteers have this member type:
+        unless @volunteers_with_member_type.nil?
+          render 'warn_cannot_delete';
+        end
     end
 
     def destroy
@@ -76,7 +87,9 @@ class MemberTypesController < ApplicationController
 
     # Defines the acceptable fields for member_type:
     def member_type_params
-        params.require(:member_type).permit(:name, 
+        params.require(:member_type).permit(:name,
             :details, :quota_hours);
     end
+
+
 end

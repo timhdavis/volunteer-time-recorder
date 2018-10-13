@@ -1,0 +1,18 @@
+<% @page_title = "Delete Member Type" %>
+
+<div class="member_type delete">
+    <h3>Warning: Cannot delete this Member Type</h3>
+
+    <p>
+      There are some volunteers with the member type: <%= link_to(@member_type.name, member_type_path(@member_type)) %>.
+      Please change the member type of these volunteers before deleting this member type.
+    </p>
+</div>
+
+<div>
+    <p>
+      <%# TODO: Add link to all volunteers with this Member Type... %>
+      <%= link_to "View Volunteers with this Member Type", volunteers_path(:member_type => @member_type.id), :class => 'btn btn-info' %>
+
+    </p>
+</div>

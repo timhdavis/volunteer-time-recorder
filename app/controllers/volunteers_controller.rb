@@ -3,12 +3,21 @@ class VolunteersController < ApplicationController
     def index
         # Get all volunteer records from the database to display:
 
-        # Check if a 'search' parameter was passed in:
-        if params[:search]
-            @volunteers = Volunteer.search(params[:search]).sorted.page(params[:page]).per(10); #paginate(:page => params[:page], :per_page => 10);
-        else
-            @volunteers = Volunteer.sorted.page(params[:page]).per(10); #paginate(:page => params[:page], :per_page => 10);
+        if params[:member_type]
+          @member_type_filter = MemberType.find_by_id(params[:member_type]);
         end
+
+        if params[:search]
+          @search_filter = params[:search].to_s;
+        end
+
+        # Check if a 'search' parameter was passed in:
+        @volunteers = Volunteer.search(params[:search]).of_member_type(params[:member_type]).sorted.page(params[:page]).per(10);
+        # if params[:search]
+        #     @volunteers = Volunteer.search(params[:search]).sorted.page(params[:page]).per(10); #paginate(:page => params[:page], :per_page => 10);
+        # else
+        #     @volunteers = Volunteer.sorted.page(params[:page]).per(10); #paginate(:page => params[:page], :per_page => 10);
+        # end
     end
 
     def show
@@ -16,7 +25,7 @@ class VolunteersController < ApplicationController
         @volunteer = Volunteer.find(params[:id]);
 
         # Get the associated member type:
-        @member_type = MemberType.find(@volunteer.member_type_id);
+        @member_type = MemberType.find_by_id(@volunteer.member_type_id);
 
         @total_hours = total_time_for_all_time_records(@volunteer.time_records);
         #@total_hours_text = total_hours.to_s + " hours";
@@ -58,6 +67,9 @@ class VolunteersController < ApplicationController
     def edit
         # Get the volunteer object that was selected:
         @volunteer = Volunteer.find(params[:id]);
+
+        # Get all member type records for the form selection:
+        @member_types = MemberType.all;
     end
 
     # Called when the Edit Volunteer form is submitted:

@@ -6,48 +6,34 @@
     <%= link_to "View All Member Types", member_types_path, :class => 'btn btn-light' %>
 </p>
 
-<h2><%= @member_type.name %></h2>
+<div class="card">
+  <div class="card-header">
+    <h2><%= @member_type.name %></h2>
+  </div>
+  <div  class="card-body">
+    <%= render(:partial => 'info_table') %>
+  </div>
+</div>
+
+<br>
+<%= link_to "Edit", edit_member_type_path(@member_type), :class => 'btn btn-primary' %>
+
+<%= link_to("Delete", delete_member_type_path(@member_type), :class => 'btn btn-danger') %>
+<br>
+
+<!-- <div style="background-color: #F6F5F5" class="jumbotron">
+  <h2><%= @member_type.name %></h2>
+
+  <%= render(:partial => 'info_table') %>
+
+  <%= link_to "Edit", edit_member_type_path(@member_type), :class => 'btn btn-primary' %>
+
+  <%= link_to("Delete", delete_member_type_path(@member_type), :class => 'btn btn-danger') %>
+</div> -->
 
 <br>
 
 <div>
-    <table class="table table-sm">
-        <thead class="thead-light">
-            <tr>
-            <th scope="col">Member Type Info</th>
-            <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">Member Type Name:</th>
-                <td><%= @member_type.name %></td>
-            </tr>
-            <tr>
-                <th scope="row">Quota Hours:</th>
-                <td><%= @member_type.quota_hours %></td>
-            </tr>
-        </tbody>
-    </table>
+  <%# TODO: Add link to all volunteers with this Member Type... %>
+  <%= link_to "View Volunteers with this Member Type", volunteers_path(:member_type => @member_type.id), :class => 'btn btn-info' %>
 </div>
-
-<div>
-    <table class="table table-sm">
-        <thead class="thead-light">
-            <tr>
-            <th scope="col">Details</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><%= @member_type.details %></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
-<%= link_to "Edit", edit_member_type_path(@member_type), :class => 'btn btn-primary' %>
-
-<%= link_to("Delete", delete_member_type_path(@member_type), :class => 'btn btn-danger') %>
-
-<%# TODO: Add link to all volunteers with this Member Type... %>
