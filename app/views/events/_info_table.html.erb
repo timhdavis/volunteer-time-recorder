@@ -1,0 +1,39 @@
+<div>
+    <table class="table table-sm">
+        <thead class="thead-light">
+            <tr>
+            <th scope="col">Event Info</th>
+            <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Event Name:</th>
+                <td><%= @event.name %></td>
+            </tr>
+            <tr>
+                <th scope="row">Year:</th>
+                <td><%= @event.year %></td>
+            </tr>
+            <tr>
+                <th scope="row">Website:</th>
+                <td><%= @event.website %></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <table class="table table-sm">
+        <thead class="thead-light">
+            <tr>
+            <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><%= @event.description %></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

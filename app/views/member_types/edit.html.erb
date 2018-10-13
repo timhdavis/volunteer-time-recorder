@@ -1,0 +1,12 @@
+<% @page_title = "Edit Member Type" %>
+
+<h1>Edit Member Type</h1>
+
+<%= form_for :member_type, url: member_type_path(@member_type), method: :patch do |form| %>
+
+    <%= render(:partial => 'form', :locals => {:form => form}) %>
+
+    <p>
+        <%= form.submit({:class => 'btn btn-primary'}) %>
+    </p>
+<% end %>

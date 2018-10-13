@@ -1,0 +1,28 @@
+<% @page_title = "View Member Type" %>
+
+<h5>Member Type Record</h5>
+
+<p>
+    <%= link_to "View All Member Types", member_types_path, :class => 'btn btn-light' %>
+</p>
+
+<div class="card">
+  <div style="padding: 8px" class="card-header">
+    <h2><%= @member_type.name %></h2>
+  </div>
+  <div style="padding: 2px" class="card-body">
+    <%= render(:partial => 'info_table') %>
+  </div>
+  <div style="padding: 8px" class="card-footer">
+    <%= link_to "Edit", edit_member_type_path(@member_type), :class => 'btn btn-primary' %>
+
+    <%= link_to("Delete", delete_member_type_path(@member_type), :class => 'btn btn-danger') %>
+  </div>
+</div>
+
+<br>
+
+<div>
+  <%# TODO: Add link to all volunteers with this Member Type... %>
+  <%= link_to "View Volunteers with this Member Type", volunteers_path(:member_type => @member_type.id), :class => 'btn btn-info' %>
+</div>
