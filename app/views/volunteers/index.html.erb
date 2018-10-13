@@ -59,7 +59,7 @@
 </div>
 
 <% if @volunteers.blank? %>
-  <% if params[:search] %>
+  <% if params[:search].present? %>
     <h4>There are no volunteers with name containing '<%= params[:search] %>'.</h4>
   <% elsif params[:member_type] %>
     <h4>There are no volunteers with member type '<%= @member_type_filter.name %>' yet.</h4>
