@@ -6,55 +6,22 @@
     <%= link_to "View All Events", events_path, :class => 'btn btn-light' %>
 </p>
 
-<h2><%= event_title(@event) %></h2>
+<div class="card">
+  <div style="padding: 8px" class="card-header">
+    <h2><%= event_title(@event) %></h2>
+  </div>
+  <div style="padding: 2px" class="card-body">
+    <%= render(:partial => 'info_table') %>
+  </div>
+  <div style="padding: 8px" class="card-footer">
+    <%= link_to "Edit", edit_event_path(@event), :class => 'btn btn-primary' %>
 
-<br>
-
-<div>
-    <table class="table table-sm">
-        <thead class="thead-light">
-            <tr>
-            <th scope="col">Event Info</th>
-            <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">Event Name:</th>
-                <td><%= @event.name %></td>
-            </tr>
-            <tr>
-                <th scope="row">Year:</th>
-                <td><%= @event.year %></td>
-            </tr>
-            <tr>
-                <th scope="row">Website:</th>
-                <td><%= @event.website %></td>
-            </tr>
-        </tbody>
-    </table>
+    <%= link_to("Delete", delete_event_path(@event), :class => 'btn btn-danger') %>
+  </div>
 </div>
 
-<div>
-    <table class="table table-sm">
-        <thead class="thead-light">
-            <tr>
-            <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><%= @event.description %></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
-<%= link_to "Edit", edit_event_path(@event), :class => 'btn btn-primary' %>
-
-<%= link_to("Delete", delete_event_path(@event), :class => 'btn btn-danger') %>
-
-<br>
 <br>
 
-<%= link_to "View Event Time Records", time_records_path(:event_id => @event.id), :class => 'btn btn-info' %>
+<p>
+    <%= link_to "View Event Time Records", time_records_path(:event_id => @event.id), :class => 'btn btn-info' %>
+</p>

@@ -1,0 +1,88 @@
+<div>
+    <table class="table table-sm">
+        <thead class="thead-light">
+            <tr>
+            <th scope="col">Contact Info</th>
+            <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">First Name:</th>
+                <td><%= @volunteer.first_name %></td>
+            </tr>
+            <tr>
+                <th scope="row">Last Name:</th>
+                <td><%= @volunteer.last_name %></td>
+            </tr>
+            <tr>
+                <th scope="row">Email:</th>
+                <td><%= @volunteer.email_address %></td>
+            </tr>
+            <tr>
+                <th scope="row">Phone:</th>
+                <td><%= @volunteer.phone %></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <table class="table table-sm">
+        <thead class="thead-light">
+            <tr>
+            <th scope="col">Membership Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><%= link_to(@member_type.name, member_type_path(@member_type)) %></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<%# TODO: For Events: %>
+<div>
+    <table class="table table-sm">
+        <thead class="thead-light">
+            <tr>
+            <th scope="col">Hours</th>
+            <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Total Hours:</th>
+                <td><%= link_to(number_with_precision(@total_hours, precision: 2,  strip_insignificant_zeros: true) + " hours", time_records_path(:volunteer_id => @volunteer.id)) %></td>
+            </tr>
+            <tr>
+                <th scope="row">Member Quota:</th>
+                <td><%= link_to(@quota_hours.to_s + " hours", member_type_path(@member_type)) %></td>
+            </tr>
+            <tr>
+                <th scope="row">Progress:</th>
+                <td>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="<%= "width: " + @progress_percent + "%;" %>" aria-valuenow=<%= @progress_percent %> aria-valuemin="0" aria-valuemax="100"><%= @progress_percent %>%</div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <table class="table table-sm">
+        <thead class="thead-light">
+            <tr>
+            <th scope="col">Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><%= @volunteer.notes  %></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
