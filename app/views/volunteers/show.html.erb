@@ -6,60 +6,21 @@
     <%= link_to "View All Volunteers", volunteers_path, :class => 'btn btn-light' %>
 </p>
 
-<h2><%= full_name(@volunteer) %></h2>
+<div class="card">
+  <div style="padding: 8px" class="card-header">
+    <h2><%= full_name(@volunteer) %></h2>
+  </div>
+  <div style="padding: 2px" class="card-body">
+    <%= render(:partial => 'info_table') %>
+  </div>
+  <div style="padding: 8px" class="card-footer">
+    <%= link_to "Edit", edit_volunteer_path(@volunteer), :class => 'btn btn-primary' %>
 
-<br>
-
-<div>
-    <table class="table table-sm">
-        <thead class="thead-light">
-            <tr>
-            <th scope="col">Contact Info</th>
-            <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">First Name:</th>
-                <td><%= @volunteer.first_name %></td>
-            </tr>
-            <tr>
-                <th scope="row">Last Name:</th>
-                <td><%= @volunteer.last_name %></td>
-            </tr>
-            <tr>
-                <th scope="row">Email:</th>
-                <td><%= @volunteer.email_address %></td>
-            </tr>
-            <tr>
-                <th scope="row">Phone:</th>
-                <td><%= @volunteer.phone %></td>
-            </tr>
-        </tbody>
-    </table>
+    <%= link_to("Delete", delete_volunteer_path(@volunteer), :class => 'btn btn-danger') %>
+  </div>
 </div>
 
-<div>
-    <table class="table table-sm">
-        <thead class="thead-light">
-            <tr>
-            <th scope="col">Notes</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><%= @volunteer.notes  %></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
-<%= link_to "Edit", edit_volunteer_path(@volunteer), :class => 'btn btn-primary' %>
-
-<%= link_to("Delete", delete_volunteer_path(@volunteer), :class => 'btn btn-danger') %>
-
 <br>
-<br>
+<%= link_to "Add Time Record", new_time_record_path(:volunteer_id => @volunteer.id), :class => 'btn btn-primary' %>
 
 <%= link_to "View Volunteer Time Records", time_records_path(:volunteer_id => @volunteer.id), :class => 'btn btn-info' %>
-

@@ -9,7 +9,15 @@
 require 'faker'
 include Faker
 
-150.times do
+# Member Types:
+
+MemberType.create(
+  name: "New",
+  quota_hours: 5,
+  details: "Fake Member Type"
+)
+
+5.times do
     random_first_name = Faker::Name.first_name;
     random_last_name = Faker::Name.last_name;
 
@@ -18,6 +26,7 @@ include Faker
         last_name: random_last_name,
         email_address: random_first_name.to_s.downcase.delete(' ') + "." + random_last_name.to_s.downcase.delete(' ') + "@email.com",
         phone: Faker::PhoneNumber.phone_number,
-        notes: "This is a fake record for example purposes only."
+        notes: "This is a fake record for example purposes only.",
+        member_type_id: 1
     )
 end

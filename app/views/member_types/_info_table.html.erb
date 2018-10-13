@@ -1,0 +1,35 @@
+<div>
+    <table class="table table-sm">
+        <thead class="thead-light">
+            <tr>
+            <th scope="col">Member Type Info</th>
+            <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Member Type Name:</th>
+                <td><%= @member_type.name %></td>
+            </tr>
+            <tr>
+                <th scope="row">Quota Hours:</th>
+                <td><%= @member_type.quota_hours %></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <table class="table table-sm">
+        <thead class="thead-light">
+            <tr>
+            <th scope="col">Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><%= @member_type.details %></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
