@@ -74,3 +74,7 @@ gem 'faker' # For generating random test data in seed file.
 gem 'kaminari' # An alternative pagination gem.
 
 gem 'time_difference' # For more readible time calculations.
+
+group :development do
+  gem 'rb-readline' # To fix an issue with Rails Console not loading on Mac. See https://github.com/rails/rails/issues/26658
+end
