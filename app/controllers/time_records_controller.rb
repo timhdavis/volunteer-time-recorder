@@ -1,17 +1,17 @@
 class TimeRecordsController < ApplicationController
-    
+
     # Before-Actions: (These will be executed before any public action below)
     before_action :find_parent_event, :only => [:index, :new];
     before_action :find_parent_volunteer, :only => [:index, :new];
 
     # CRUD Actions:
-    
+
     def index
         # Get all time_record records from the database to display:
         # Check if a parent event was passed in (from "find_event" method below):
         if (@parent_volunteer) # Check if variable exists and is not nil.
             puts("Filtering by volunteer passed in.");
-            @time_records = @parent_volunteer.time_records.all; 
+            @time_records = @parent_volunteer.time_records.all;
         elsif (@parent_event) # Check if variable exists and is not nil.
             puts("Filtering by event passed in.");
             @time_records = @parent_event.time_records.all;
@@ -24,7 +24,7 @@ class TimeRecordsController < ApplicationController
     def show
         # Get the time_record object that was selected:
         @time_record = TimeRecord.find(params[:id]);
-        
+
         @total_time_text = TimeDifference.between(@time_record.start_time, @time_record.end_time).humanize;
 
         @category_name = @time_record.category;
@@ -67,7 +67,7 @@ class TimeRecordsController < ApplicationController
         else
             @selected_volunteer = Volunteer.first;
         end
-        
+
         if (@parent_event) # Check if variable exists and is not nil.
             @selected_event = @parent_event;
             puts("Set SELECTED_EVENT to " + @selected_event.name);
@@ -75,7 +75,7 @@ class TimeRecordsController < ApplicationController
             @selected_event = Event.first;
         end
 
-        
+
     end
 
     # Called when the New TimeRecord form is submitted:
@@ -146,12 +146,12 @@ class TimeRecordsController < ApplicationController
 
     # Defines the acceptable fields for time_record:
     def time_record_params
-        params.require(:time_record).permit(:start_time, 
+        params.require(:time_record).permit(:start_time,
             :end_time, :name, :category, :notes, :event_id, :volunteer_id);
     end
 
 
-    
+
     # A Before-Action method to get the event passed from a different controller:
     # Sets a variable 'parent_event' if an event object was passed in:
     def find_parent_event
@@ -160,7 +160,7 @@ class TimeRecordsController < ApplicationController
 
         # DEBUG ONLY:
         puts("find_event: Event OBJECT passed in: " + @parent_event.to_s);
-        
+
         if (@parent_event)
             puts("found event: " + @parent_event.name);
         else
@@ -176,7 +176,7 @@ class TimeRecordsController < ApplicationController
 
         # DEBUG ONLY:
         puts("find_volunteer: volunteer OBJECT passed in: " + @parent_volunteer.to_s);
-        
+
         if (@parent_volunteer)
             puts("found volunteer: " + @parent_volunteer.email_address);
         else
